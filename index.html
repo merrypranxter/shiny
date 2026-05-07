@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHINY — Generative Art Systems</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #08060d;
+      color: rgba(255,255,255,0.75);
+      font-family: monospace;
+      padding: 40px 32px 80px;
+    }
+
+    header {
+      margin-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 32px;
+    }
+
+    h1 {
+      font-size: 28px;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.92);
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.8;
+      max-width: 640px;
+    }
+
+    .doctrine {
+      font-size: 11px;
+      color: rgba(255,255,255,0.25);
+      font-style: italic;
+      margin-top: 16px;
+      line-height: 2;
+    }
+
+    section {
+      margin-bottom: 48px;
+    }
+
+    h2 {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.3);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      display: block;
+      text-decoration: none;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 4px;
+      padding: 16px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .card-num {
+      font-size: 10px;
+      color: rgba(255,255,255,0.2);
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: 10px;
+      color: rgba(255,255,255,0.3);
+      line-height: 1.6;
+    }
+
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .doc-card {
+      display: block;
+      text-decoration: none;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px;
+      padding: 14px;
+      transition: border-color 0.2s;
+    }
+
+    .doc-card:hover {
+      border-color: rgba(255,255,255,0.15);
+    }
+
+    .doc-card-title {
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      font-size: 10px;
+      color: rgba(255,255,255,0.2);
+      line-height: 2;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>✦ SHINY</h1>
+  <p class="subtitle">
+    A generative art library for luminous, structured, optically alive creative code.<br>
+    20 core systems · 45 showcase builds · shared utilities · doctrine
+  </p>
+  <p class="doctrine">
+    "Shiny design is not about covering a thing in gloss. It is about deciding where brilliance lives."<br>
+    Shine is a structure — a seam, a vein, a crack, a woven path, a pressure ridge, a film on a dull host.
+  </p>
+</header>
+
+<section>
+  <h2>Core Systems</h2>
+  <div class="grid">
+    <a class="card" href="systems/01-matte-veins/index.html">
+      <div class="card-num">SYSTEM 01</div>
+      <div class="card-title">Matte Host + Brilliant Veins</div>
+      <div class="card-desc">Contrast of energy states. Dull host, live veins.</div>
+    </a>
+    <a class="card" href="systems/02-tessellation-woven-light/index.html">
+      <div class="card-num">SYSTEM 02</div>
+      <div class="card-title">Tessellation Woven From Light</div>
+      <div class="card-desc">Geometry becomes shine-carrying infrastructure.</div>
+    </a>
+    <a class="card" href="systems/03-kintsugi-cracks/index.html">
+      <div class="card-num">SYSTEM 03</div>
+      <div class="card-title">Kintsugi / Cracks / Seams</div>
+      <div class="card-desc">Shine loves boundaries. Damage made beautiful.</div>
+    </a>
+    <a class="card" href="systems/04-buried-shine/index.html">
+      <div class="card-num">SYSTEM 04</div>
+      <div class="card-title">Buried Shine Under Cloudy Material</div>
+      <div class="card-desc">Visual depth and mystery through depth separation.</div>
+    </a>
+    <a class="card" href="systems/05-glitter-ecology/index.html">
+      <div class="card-num">SYSTEM 05</div>
+      <div class="card-title">Glitter Ecology</div>
+      <div class="card-desc">Sparkle with intelligent population distribution.</div>
+    </a>
+    <a class="card" href="systems/06-metallic-gradient-maps/index.html">
+      <div class="card-num">SYSTEM 06</div>
+      <div class="card-title">Metallic Gradient Structure Maps</div>
+      <div class="card-desc">Metallic color as information, not fill.</div>
+    </a>
+    <a class="card" href="systems/07-shine-as-weather/index.html">
+      <div class="card-num">SYSTEM 07</div>
+      <div class="card-title">Shine-As-Weather</div>
+      <div class="card-desc">Shine as a changing field condition with fronts and storms.</div>
+    </a>
+    <a class="card" href="systems/08-infrastructure-brilliance/index.html">
+      <div class="card-num">SYSTEM 08</div>
+      <div class="card-title">Infrastructure Made of Brilliance</div>
+      <div class="card-desc">Shine is infrastructure, not finish. It has a job.</div>
+    </a>
+    <a class="card" href="systems/09-shine-embroidery/index.html">
+      <div class="card-num">SYSTEM 09</div>
+      <div class="card-title">Shine-As-Embroidery / Suturing</div>
+      <div class="card-desc">Shine is craft labor. Stitched, beaded, sutured.</div>
+    </a>
+    <a class="card" href="systems/10-wet-dry-shine/index.html">
+      <div class="card-num">SYSTEM 10</div>
+      <div class="card-title">Wet Shine vs Dry Shine</div>
+      <div class="card-desc">Not all shine behaves the same. Material tension.</div>
+    </a>
+    <a class="card" href="systems/11-shine-anatomy/index.html">
+      <div class="card-num">SYSTEM 11</div>
+      <div class="card-title">Shine-As-Anatomy</div>
+      <div class="card-desc">Shine becomes internal biological life.</div>
+    </a>
+    <a class="card" href="systems/12-shine-repair/index.html">
+      <div class="card-num">SYSTEM 12</div>
+      <div class="card-title">Shine-As-Repair / Damage</div>
+      <div class="card-desc">Damage reveals brilliance. The wound becomes sacred.</div>
+    </a>
+    <a class="card" href="systems/13-shine-woven-structure/index.html">
+      <div class="card-num">SYSTEM 13</div>
+      <div class="card-title">Shine-As-Woven Structure</div>
+      <div class="card-desc">Shine becomes textile geometry. Over-under brilliance.</div>
+    </a>
+    <a class="card" href="systems/14-shine-residue/index.html">
+      <div class="card-num">SYSTEM 14</div>
+      <div class="card-title">Shine-As-Residue / Contamination</div>
+      <div class="card-desc">Shine is what the material leaves behind.</div>
+    </a>
+    <a class="card" href="systems/15-shine-language/index.html">
+      <div class="card-num">SYSTEM 15</div>
+      <div class="card-title">Shine-As-Language / Symbol</div>
+      <div class="card-desc">Shine behaves like information. The light is trying to say something.</div>
+    </a>
+    <a class="card" href="systems/16-shine-object-logic/index.html">
+      <div class="card-num">SYSTEM 16</div>
+      <div class="card-title">Shine-As-Object Logic</div>
+      <div class="card-desc">Shine is the object's reason for existing.</div>
+    </a>
+    <a class="card" href="systems/17-shine-costume/index.html">
+      <div class="card-num">SYSTEM 17</div>
+      <div class="card-title">Shine-As-Costume / Fashion</div>
+      <div class="card-desc">Shine as performed identity and spectacle.</div>
+    </a>
+    <a class="card" href="systems/18-shine-topography/index.html">
+      <div class="card-num">SYSTEM 18</div>
+      <div class="card-title">Shine-As-Map / Topography</div>
+      <div class="card-desc">Shine reads the terrain. Chrome contour maps.</div>
+    </a>
+    <a class="card" href="systems/19-shine-caustic/index.html">
+      <div class="card-num">SYSTEM 19</div>
+      <div class="card-title">Shine-As-Caustic Projection</div>
+      <div class="card-desc">Shine as bent and focused light forming patterns.</div>
+    </a>
+    <a class="card" href="systems/20-shine-gradient-sculpture/index.html">
+      <div class="card-num">SYSTEM 20</div>
+      <div class="card-title">Shine-As-Metallic Gradient Sculpture</div>
+      <div class="card-desc">Fake volumetric form through metallic gradient logic.</div>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Showcase Builds — Anatomy Series</h2>
+  <div class="grid">
+    <a class="card" href="showcases/01-glitter-circulatory-system/index.html">
+      <div class="card-num">SHOWCASE 01</div>
+      <div class="card-title">Glitter Circulatory System</div>
+      <div class="card-desc">Matte body with liquid glitter pulsing through capillaries.</div>
+    </a>
+    <a class="card" href="showcases/02-opal-nervous-system/index.html">
+      <div class="card-num">SHOWCASE 02</div>
+      <div class="card-title">Opal Nervous System</div>
+      <div class="card-desc">Dark rubber surface with opal synapses flashing at junctions.</div>
+    </a>
+    <a class="card" href="showcases/03-rhinestone-lymph-nodes/index.html">
+      <div class="card-num">SHOWCASE 03</div>
+      <div class="card-title">Rhinestone Lymph Nodes</div>
+      <div class="card-desc">Branching vessels with oversized jewel glands.</div>
+    </a>
+    <a class="card" href="showcases/04-metallic-vein-stone/index.html">
+      <div class="card-num">SHOWCASE 04</div>
+      <div class="card-title">Metallic Vein Stone</div>
+      <div class="card-desc">Stone terrain with impossible gold-silver vein seams.</div>
+    </a>
+    <a class="card" href="showcases/05-sequined-skeleton/index.html">
+      <div class="card-num">SHOWCASE 05</div>
+      <div class="card-title">Sequined Skeleton</div>
+      <div class="card-desc">Internal bones only visible as sequined structural glints.</div>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Showcase Builds — Damage Series</h2>
+  <div class="grid">
+    <a class="card" href="showcases/06-holographic-kintsugi-storm/index.html">
+      <div class="card-num">SHOWCASE 06</div>
+      <div class="card-title">Holographic Kintsugi Storm</div>
+      <div class="card-desc">Cracked ceramic repaired with violent holographic branching seams.</div>
+    </a>
+    <a class="card" href="showcases/07-glitter-scar-tissue/index.html">
+      <div class="card-num">SHOWCASE 07</div>
+      <div class="card-title">Glitter Scar Tissue</div>
+      <div class="card-desc">Raised pink scars filled with dry sparkle and wet pearl highlight.</div>
+    </a>
+    <a class="card" href="showcases/08-chrome-infection-map/index.html">
+      <div class="card-num">SHOWCASE 08</div>
+      <div class="card-title">Chrome Infection Map</div>
+      <div class="card-desc">Damage lines spreading like metal roots across a matte surface.</div>
+    </a>
+    <a class="card" href="showcases/09-polarized-stress-fractures/index.html">
+      <div class="card-num">SHOWCASE 09</div>
+      <div class="card-title">Polarized Stress Fractures</div>
+      <div class="card-desc">Clear plastic stress rainbows radiating from crack lines.</div>
+    </a>
+    <a class="card" href="showcases/10-glitter-erosion-canyon/index.html">
+      <div class="card-num">SHOWCASE 10</div>
+      <div class="card-title">Glitter Erosion Canyon</div>
+      <div class="card-desc">Desert surface cut by branching distributary glitter rivers.</div>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Showcase Builds — Woven / Textile Series</h2>
+  <div class="grid">
+    <a class="card" href="showcases/11-penrose-light-loom/index.html">
+      <div class="card-num">SHOWCASE 11</div>
+      <div class="card-title">Penrose Light Loom</div>
+      <div class="card-desc">Quasicrystal tiling whose edges are spectral fiber-optic threads.</div>
+    </a>
+    <a class="card" href="showcases/12-hologram-basketweave/index.html">
+      <div class="card-num">SHOWCASE 12</div>
+      <div class="card-title">Hologram Basketweave</div>
+      <div class="card-desc">Over/under holographic foil ribbons in a basketweave pattern.</div>
+    </a>
+    <a class="card" href="showcases/13-fiber-optic-quilt/index.html">
+      <div class="card-num">SHOWCASE 13</div>
+      <div class="card-title">Fiber-Optic Quilt</div>
+      <div class="card-desc">Patchwork quilt whose seams pulse with colored light.</div>
+    </a>
+    <a class="card" href="showcases/14-opal-fishnet/index.html">
+      <div class="card-num">SHOWCASE 14</div>
+      <div class="card-title">Opal Fishnet</div>
+      <div class="card-desc">A net whose crossings flash like opal synapses.</div>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Showcase Builds — Ecology / Residue Series</h2>
+  <div class="grid">
+    <a class="card" href="showcases/15-chrome-pollen/index.html">
+      <div class="card-num">SHOWCASE 15</div>
+      <div class="card-title">Chrome Pollen</div>
+      <div class="card-desc">Mirror particles clustered like pollen dust formations.</div>
+    </a>
+    <a class="card" href="showcases/16-glitter-mold-bloom/index.html">
+      <div class="card-num">SHOWCASE 16</div>
+      <div class="card-title">Glitter Mold Bloom</div>
+      <div class="card-desc">Dark host with craft glitter spore heads in damp zones.</div>
+    </a>
+    <a class="card" href="showcases/17-foil-rust/index.html">
+      <div class="card-num">SHOWCASE 17</div>
+      <div class="card-title">Foil Rust</div>
+      <div class="card-desc">Rainbow metallic corrosion eating across a matte surface.</div>
+    </a>
+    <a class="card" href="showcases/18-sequin-mildew/index.html">
+      <div class="card-num">SHOWCASE 18</div>
+      <div class="card-title">Sequin Mildew</div>
+      <div class="card-desc">Tiny sequins growing in damp-looking colonies from corners.</div>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Showcase Builds — Language / Symbol Series</h2>
+  <div class="grid">
+    <a class="card" href="showcases/19-glitter-sigil-mesh/index.html">
+      <div class="card-num">SHOWCASE 19</div>
+      <div class="card-title">Glitter Sigil Mesh</div>
+      <div class="card-desc">Ritual circuit diagram in wet glitter lacquer.</div>
+    </a>
+    <a class="card" href="showcases/20-chromatic-suture-script/index.html">
+      <div class="card-num">SHOWCASE 20</div>
+      <div class="card-title">Chromatic Suture Script</div>
+      <div class="card-desc">Asemic writing sewn into matte skin with metallic rainbow thread.</div>
+    </a>
+    <a class="card" href="showcases/21-mirror-alphabet-fossils/index.html">
+      <div class="card-num">SHOWCASE 21</div>
+      <div class="card-title">Mirror Alphabet Fossils</div>
+      <div class="card-desc">Letterforms buried under wax, visible only as edge glints.</div>
+    </a>
+    <a class="card" href="showcases/22-glitter-bureaucracy/index.html">
+      <div class="card-num">SHOWCASE 22</div>
+      <div class="card-title">Glitter Bureaucracy</div>
+      <div class="card-desc">Official forms and charts where the lines are absurdly glamorous.</div>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Showcase Builds — Object / Artifact Series</h2>
+  <div class="grid">
+    <a class="card" href="showcases/23-gumball-armor/index.html">
+      <div class="card-num">SHOWCASE 23</div>
+      <div class="card-title">Gumball Armor</div>
+      <div class="card-desc">A creature/suit covered in glossy dome cells.</div>
+    </a>
+    <a class="card" href="showcases/24-rhinestone-wormhole/index.html">
+      <div class="card-num">SHOWCASE 24</div>
+      <div class="card-title">Rhinestone Wormhole</div>
+      <div class="card-desc">Concentric portal made of rotating rhinestone rings.</div>
+    </a>
+    <a class="card" href="showcases/25-chrome-coral/index.html">
+      <div class="card-num">SHOWCASE 25</div>
+      <div class="card-title">Chrome Coral</div>
+      <div class="card-desc">Branching chrome coral structures growing from the bottom.</div>
+    </a>
+    <a class="card" href="showcases/26-holographic-organ-cabinet/index.html">
+      <div class="card-num">SHOWCASE 26</div>
+      <div class="card-title">Holographic Organ Cabinet</div>
+      <div class="card-desc">Cabinet of compartments, each housing a different shiny element.</div>
+    </a>
+    <a class="card" href="showcases/27-spectral-prism-reliquary/index.html">
+      <div class="card-num">SHOWCASE 27</div>
+      <div class="card-title">Spectral Prism Reliquary</div>
+      <div class="card-desc">A reliquary box with prismatic light escaping through gaps.</div>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Showcase Builds — Map / Topography Series</h2>
+  <div class="grid">
+    <a class="card" href="showcases/28-chrome-topography/index.html">
+      <div class="card-num">SHOWCASE 28</div>
+      <div class="card-title">Chrome Topography</div>
+      <div class="card-desc">Topographic map in chrome rainbow contour bands.</div>
+    </a>
+    <a class="card" href="showcases/29-opal-isobar-map/index.html">
+      <div class="card-num">SHOWCASE 29</div>
+      <div class="card-title">Opal Isobar Map</div>
+      <div class="card-desc">Pressure isobars rendered in opal shimmer over matte ground.</div>
+    </a>
+    <a class="card" href="showcases/30-metallic-vein-terrain/index.html">
+      <div class="card-num">SHOWCASE 30</div>
+      <div class="card-title">Metallic Vein Terrain</div>
+      <div class="card-desc">Stone terrain with gold-silver-copper vein seams throughout.</div>
+    </a>
+    <a class="card" href="showcases/31-caustic-quilt/index.html">
+      <div class="card-num">SHOWCASE 31</div>
+      <div class="card-title">Caustic Quilt</div>
+      <div class="card-desc">Textile field where every seam behaves like a refractive caustic.</div>
+    </a>
+    <a class="card" href="showcases/32-refractive-lens-array/index.html">
+      <div class="card-num">SHOWCASE 32</div>
+      <div class="card-title">Refractive Lens Array</div>
+      <div class="card-desc">Grid of lens elements that warp and focus iridescent backgrounds.</div>
+    </a>
+    <a class="card" href="showcases/33-spectral-caustic-web/index.html">
+      <div class="card-num">SHOWCASE 33</div>
+      <div class="card-title">Spectral Caustic Web</div>
+      <div class="card-desc">Spiderweb where each thread is a colored caustic filament.</div>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Showcase Builds — Weather / Field Series</h2>
+  <div class="grid">
+    <a class="card" href="showcases/34-anodized-infection-map/index.html">
+      <div class="card-num">SHOWCASE 34</div>
+      <div class="card-title">Anodized Infection Map</div>
+      <div class="card-desc">Metallic colored regions spreading like contamination zones.</div>
+    </a>
+    <a class="card" href="showcases/35-glitter-weather-radar/index.html">
+      <div class="card-num">SHOWCASE 35</div>
+      <div class="card-title">Glitter Weather Radar</div>
+      <div class="card-desc">Radar screen where storm zones are reflective particle fields.</div>
+    </a>
+    <a class="card" href="showcases/36-sparkle-storm-map/index.html">
+      <div class="card-num">SHOWCASE 36</div>
+      <div class="card-title">Sparkle Storm Map</div>
+      <div class="card-desc">Full weather system where sparkle clusters at storm fronts.</div>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Showcase Builds — Infrastructure Series</h2>
+  <div class="grid">
+    <a class="card" href="showcases/37-glitter-plumbing/index.html">
+      <div class="card-num">SHOWCASE 37</div>
+      <div class="card-title">Glitter Plumbing</div>
+      <div class="card-desc">Industrial pipe diagram where pipes carry glitter fluid.</div>
+    </a>
+    <a class="card" href="showcases/38-fiber-optic-city-grid/index.html">
+      <div class="card-num">SHOWCASE 38</div>
+      <div class="card-title">Fiber-Optic City Grid</div>
+      <div class="card-desc">City plan printed in liquid light with chrome intersections.</div>
+    </a>
+    <a class="card" href="showcases/39-rhinestone-nervous-system/index.html">
+      <div class="card-num">SHOWCASE 39</div>
+      <div class="card-title">Rhinestone Nervous System</div>
+      <div class="card-desc">Dark rubber ground with neural branching rhinestone paths.</div>
+    </a>
+    <a class="card" href="showcases/40-opal-road-network/index.html">
+      <div class="card-num">SHOWCASE 40</div>
+      <div class="card-title">Opal Road Network</div>
+      <div class="card-desc">Road/transit map where roads are opal light channels.</div>
+    </a>
+    <a class="card" href="showcases/41-city-grid-light-seams/index.html">
+      <div class="card-num">SHOWCASE 41</div>
+      <div class="card-title">City Grid of Light Seams</div>
+      <div class="card-desc">Matte city map where streets are fiber-optic seams.</div>
+    </a>
+    <a class="card" href="showcases/42-vein-delta-light-estuary/index.html">
+      <div class="card-num">SHOWCASE 42</div>
+      <div class="card-title">Vein Delta / Light Estuary</div>
+      <div class="card-desc">River delta where channels carry glitter fluid to the coast.</div>
+    </a>
+    <a class="card" href="showcases/43-power-lines-under-skin/index.html">
+      <div class="card-num">SHOWCASE 43</div>
+      <div class="card-title">Power Lines Under Skin</div>
+      <div class="card-desc">Holographic power lines buried under a soft membrane.</div>
+    </a>
+    <a class="card" href="showcases/44-chrome-root-lattice/index.html">
+      <div class="card-num">SHOWCASE 44</div>
+      <div class="card-title">Chrome Root Lattice</div>
+      <div class="card-desc">Chrome root system growing as underground infrastructure.</div>
+    </a>
+    <a class="card" href="showcases/45-holographic-scaffolding/index.html">
+      <div class="card-num">SHOWCASE 45</div>
+      <div class="card-title">Holographic Scaffolding</div>
+      <div class="card-desc">Holographic construction scaffolding supporting floating matte blobs.</div>
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Doctrine &amp; Reference</h2>
+  <div class="doc-grid">
+    <a class="doc-card" href="doctrine/design-directions.md">
+      <div class="doc-card-title">Design Directions →</div>
+    </a>
+    <a class="doc-card" href="doctrine/effect-vocab.md">
+      <div class="doc-card-title">Effect Vocabulary →</div>
+    </a>
+    <a class="doc-card" href="doctrine/math-systems.md">
+      <div class="doc-card-title">Math Systems →</div>
+    </a>
+    <a class="doc-card" href="doctrine/design-formulas.md">
+      <div class="doc-card-title">Design Formulas →</div>
+    </a>
+    <a class="doc-card" href="shaders/singularity.glsl">
+      <div class="doc-card-title">GLSL Singularity Shader →</div>
+    </a>
+    <a class="doc-card" href="shared/utils.js">
+      <div class="doc-card-title">Shared Utilities →</div>
+    </a>
+    <a class="doc-card" href="shared/draw-helpers.js">
+      <div class="doc-card-title">Draw Helpers →</div>
+    </a>
+    <a class="doc-card" href="README.md">
+      <div class="doc-card-title">README →</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  SHINY — generative art doctrine and system library<br>
+  "What is shining, why is it shining, and what does the shine reveal that the flat surface is trying to hide?"
+</footer>
+
+</body>
+</html>
