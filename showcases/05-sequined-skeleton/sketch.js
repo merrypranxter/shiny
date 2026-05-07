@@ -10,11 +10,11 @@ let bones = [];
 function init() {
   bones = [];
   const cx = W / 2, cy = H / 2;
-  // Spine
+  // Spine segments
   for (let i = -10; i <= 10; i++) {
-    bones.push({ type: 'seg', x1: cx, y1: cy + i * 28, x2: cx, y2: cy + (i + 1) * 28, hue: 215 });
+    bones.push({ x1: cx, y1: cy + i * 28, x2: cx, y2: cy + (i + 1) * 28, hue: 215 });
   }
-  // Ribs
+  // Rib curves
   for (let r = -7; r <= 7; r++) {
     if (r === 0) continue;
     const ry = cy + r * 24;
@@ -28,7 +28,7 @@ function init() {
         });
       }
       for (let p = 0; p < pts.length - 1; p++) {
-        bones.push({ type: 'seg', x1: pts[p].x, y1: pts[p].y, x2: pts[p+1].x, y2: pts[p+1].y, hue: 200 + Math.random() * 40 });
+        bones.push({ x1: pts[p].x, y1: pts[p].y, x2: pts[p+1].x, y2: pts[p+1].y, hue: 200 + Math.random() * 40 });
       }
     }
   }
@@ -38,19 +38,20 @@ init();
 let time = 0;
 function frame() {
   time += 0.016;
-  ctx.fillStyle = 'rgba(24,20,13,0.22)';
+  ctx.fillStyle = 'rgba(24,20,13,0.18)';
   ctx.fillRect(0, 0, W, H);
+
   for (const b of bones) {
-    const flash = 0.5 + 0.5 * Math.sin(time * 3 + b.x1 * 0.02);
-    const steps = Math.ceil(Math.hypot(b.x2 - b.x1, b.y2 - b.y1) / 6);
-    for (let i = 0; i <= steps; i++) {
-      const t = i / steps;
-      const x = b.x1 + (b.x2 - b.x1) * t;
-      const y = b.y1 + (b.y2 - b.y1) * t;
-      const r = 1.5 + flash * 1.5;
+    const hue = b.hue + 20 * Math.sin(time * 2 + b.x1 * 0.015);
+    // Render bone segment as stitched sequin line using shared helper
+    drawStitchedLine(ctx, b.x1, b.y1, b.x2, b.y2, time, hue);
+
+    // Extra sequin circles at joint endpoints
+    const flash = 0.5 + 0.5 * Math.sin(time * 4 + b.x1 * 0.03 + b.y1 * 0.02);
+    if (flash > 0.75) {
       ctx.beginPath();
-      ctx.arc(x, y, r, 0, Math.PI * 2);
-      ctx.fillStyle = `hsla(${b.hue + flash * 30},90%,${55 + flash * 35}%,${0.5 + flash * 0.4})`;
+      ctx.arc(b.x2, b.y2, 2 + flash * 2, 0, Math.PI * 2);
+      ctx.fillStyle = `hsla(${hue + 20},100%,${70 + flash * 25}%,${flash * 0.8})`;
       ctx.fill();
     }
   }

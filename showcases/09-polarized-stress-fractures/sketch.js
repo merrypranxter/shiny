@@ -5,24 +5,28 @@ function resize() { W = canvas.width = window.innerWidth; H = canvas.height = wi
 resize();
 window.addEventListener('resize', () => { resize(); init(); });
 
-let segs = [];
+let cracks = [], allSegs = [];
 
 function init() {
-  segs = [];
+  allSegs = [];
   ctx.fillStyle = '#c8d4e0';
   ctx.fillRect(0, 0, W, H);
-  for (let o = 0; o < 4; o++) {
-    const ox = W * (0.1 + 0.8 * Math.random());
-    const oy = H * (0.1 + 0.8 * Math.random());
-    for (let a = 0; a < 8; a++) {
-      let x = ox, y = oy, angle = (a / 8) * Math.PI * 2;
-      for (let s = 0; s < 40; s++) {
-        angle += (Math.random() - 0.5) * 0.4;
-        const nx = x + Math.cos(angle) * (5 + Math.random() * 5);
-        const ny = y + Math.sin(angle) * (5 + Math.random() * 5);
-        segs.push({ x1: x, y1: y, x2: nx, y2: ny, ox, oy });
-        x = nx; y = ny;
-      }
+
+  // Seed multiple crack origins
+  const origins = [
+    { x: W * 0.25, y: H * 0.3 },
+    { x: W * 0.7,  y: H * 0.5 },
+    { x: W * 0.5,  y: H * 0.75 },
+    { x: W * 0.15, y: H * 0.7 }
+  ];
+
+  for (const o of origins) {
+    let walkers = seedCracks(o.x, o.y, 8);
+    for (let step = 0; step < 60; step++) {
+      walkers = stepCracks(walkers, ctx, (c, x1, y1, x2, y2, w) => {
+        allSegs.push({ x1, y1, x2, y2, ox: o.x, oy: o.y });
+      });
+      if (walkers.length === 0) break;
     }
   }
 }
@@ -31,19 +35,23 @@ init();
 let time = 0;
 function frame() {
   time += 0.016;
-  ctx.fillStyle = 'rgba(200,212,224,0.08)';
+  ctx.fillStyle = 'rgba(200,212,224,0.06)';
   ctx.fillRect(0, 0, W, H);
-  for (const s of segs) {
-    // Draw crack
-    ctx.strokeStyle = 'rgba(40,30,60,0.35)';
+
+  for (const s of allSegs) {
+    // Dark crack line
+    ctx.strokeStyle = 'rgba(40,30,60,0.3)';
     ctx.lineWidth = 1;
     ctx.beginPath(); ctx.moveTo(s.x1, s.y1); ctx.lineTo(s.x2, s.y2); ctx.stroke();
-    // Rainbow halos
+
+    // Rainbow pressure halos using contourAmount for distance fields
     const dist = Math.hypot(s.x1 - s.ox, s.y1 - s.oy);
-    for (let ring = 1; ring <= 3; ring++) {
-      const hue = (dist * 0.8 + ring * 40 + time * 60) % 360;
-      ctx.strokeStyle = `hsla(${hue},100%,50%,${0.06 - ring * 0.015})`;
-      ctx.lineWidth = ring * 2.5;
+    const pressure = contourAmount(dist * 0.005, 8);
+    for (let ring = 1; ring <= 4; ring++) {
+      const hue = (dist * 0.7 + ring * 50 + time * 55) % 360;
+      const alpha = (0.08 - ring * 0.015) * (1 + pressure * 0.5);
+      ctx.strokeStyle = `hsla(${hue},100%,55%,${Math.max(0, alpha)})`;
+      ctx.lineWidth = ring * 2.2;
       ctx.beginPath(); ctx.moveTo(s.x1, s.y1); ctx.lineTo(s.x2, s.y2); ctx.stroke();
     }
   }
