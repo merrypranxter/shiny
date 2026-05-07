@@ -1,0 +1,41 @@
+# RepoScripter Configuration
+
+# This file defines how RepoScripter processes the shiny-math repo
+
+[extraction]
+# Which sections to extract code from
+code_hooks = ["Code Hook", "Implementation", "GLSL", "JavaScript", "Python"]
+math_references = ["Math Systems", "Math", "Systems"]
+
+[output]
+# Where extracted code goes
+glsl_dir = "shader-translations/"
+js_dir = "code-snippets/"
+py_dir = "code-snippets/"
+showcase_dir = "showcase-builds/"
+
+[compatibility]
+# Target environments
+glsl_version = "3.3"
+webgl_version = "2.0"
+js_module_type = "esm"
+python_version = "3.10"
+
+[pipeline]
+# Processing order
+steps = [
+  "parse_systems",
+  "extract_code",
+  "map_math",
+  "generate_showcases",
+  "resolve_crossbreeds",
+  "update_readme"
+]
+
+[ai_agents]
+# Which agent handles what
+kimi = "docs_and_structure"
+claude = "analysis_and_planning"
+chatgpt = "code_generation"
+gemini = "shader_development"
+copilot = "repo_management"
